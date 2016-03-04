@@ -12,21 +12,17 @@ def printn(p):
 def display_dice(dice, target_number, hilight_ones = False):
     dice.sort()
     dice.reverse()
-    line = ""
-    for die in dice:
-        line += " "
-        if die == 10:
-            line += termcolor.colored(str(die), 'yellow', attrs = ['bold'])
-        elif die >= target_number:
-            line += termcolor.colored(str(die), attrs = ['bold'])
-        elif die == 1:
-            if hilight_ones:
-                line += termcolor.colored(str(die), 'red', attrs = ['bold'])
-            else:
-                line += str(die)
-        else:
-            line += str(die)
-    return line
+    return " ".join([display_die(die, target_number, hilight_ones) for die in dice])
+
+def display_die(die, target_number, hilight_ones):
+    if die == 10:
+        return termcolor.colored(str(die), 'yellow', attrs = ['bold'])
+    elif die >= target_number:
+        return termcolor.colored(str(die), attrs = ['bold'])
+    elif die == 1 and hilight_ones:
+        return termcolor.colored(str(die), 'red', attrs = ['bold'])
+    else:
+        return str(die)
 
 def count_successes(results, target_number):
     count = 0
