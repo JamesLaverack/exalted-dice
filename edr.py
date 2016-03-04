@@ -6,9 +6,6 @@ import termcolor
 def d10():
     return random.randint(1, 10)
 
-def printn(p):
-    print(p, end = "")
-
 def display_dice(dice, target_number, hilight_ones = False):
     dice.sort()
     dice.reverse()
