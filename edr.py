@@ -42,8 +42,9 @@ def roll(dice, autos = 0, target_number = 7):
         print(termcolor.colored("Botch", 'red', attrs = ['bold']))
     else:
         # Apply auto successes
-        supernatural += autos
-        mortal += autos
+        if supernatural != 0:
+            supernatural += autos
+            mortal += autos
 
         print(display_dice(results, target_number))
         print("Successes      : " + termcolor.colored(supernatural, 'yellow', attrs = ['bold']))
