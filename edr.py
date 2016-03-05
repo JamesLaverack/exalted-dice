@@ -2,6 +2,7 @@
 import argparse
 import random
 import termcolor
+import inflect
 
 def d10():
     return random.randint(1, 10)
@@ -65,6 +66,9 @@ if __name__ == "__main__":
 
     dice, autos = parse_dice_expression(args.dice)
 
-    print("Rolling {dice} dice with {autos} automatic successes".format(dice = dice, autos = autos))
+    p = inflect.engine()
+    s = "Rolling {dice} {die_noun}".format(dice = dice, die_noun = p.plural("die", dice))
+    if autos > 0:
+        s += " and adding {autos} automatic {success_noun}".format(autos = autos, success_noun = p.plural("success", autos))
+    print(s + ".")
     roll(dice, autos = autos)
-    
